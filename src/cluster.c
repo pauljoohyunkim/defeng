@@ -56,3 +56,8 @@ Cluster *createClusterList(char *str, size_t* pNItems)
     }
     return clusters;
 }
+
+void freeClusters(Cluster * clusters)
+{
+    free(clusters);
+}

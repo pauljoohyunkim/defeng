@@ -7,5 +7,7 @@ int main()
 
     Cluster* clusters = createClusterList("../data/c.txt", &n);
 
+    freeClusters(clusters);
+
     return 0;
 }

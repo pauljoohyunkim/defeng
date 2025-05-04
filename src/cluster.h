@@ -6,5 +6,6 @@
 typedef struct { char arr [MAX_CLUSTER_LENGTH]; } Cluster;
 
 Cluster *createClusterList(char *str, size_t* pNItems);
+void freeClusters(Cluster * clusters);
 
 #endif
