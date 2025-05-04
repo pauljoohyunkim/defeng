@@ -5,6 +5,4 @@
 
 typedef struct { char arr [MAX_CLUSTER_LENGTH]; } Cluster;
 
-size_t nLines(FILE *fp);
-
 #endif

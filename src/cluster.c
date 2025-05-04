@@ -4,7 +4,7 @@
 #include "cluster.h"
 
 // Counts lines. Only call when the file is freshly opened.
-size_t nLines(FILE *fp)
+static size_t nLines(FILE *fp)
 {
     size_t n = 0;
     char buffer[BUFSIZ] = { 0 };
