@@ -1,7 +1,7 @@
 #ifndef __CLUSTER_H__
 #define __CLUSTER_H__
 
-#define MAX_CLUSTER_LENGTH 4
+#define MAX_CLUSTER_LENGTH 5
 
 #include <stddef.h>
 

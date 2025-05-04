@@ -22,7 +22,7 @@ void generate(DefEngTreeNode node, Cluster *consonant_clusters, size_t nConsonan
                 // TODO: Output!!!!!!!!!!!!!!
                 for (size_t j = 0; j < nSpace - node->depth - 1; j++)
                 {
-                    fprintf(fp, "%s", prefix[nSpace - j - 2].arr);
+                    fprintf(fp, "%s\n", prefix[nSpace - j - 2].arr);
                 }
             }
         }
