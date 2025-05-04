@@ -73,6 +73,27 @@ DefEngTreeNode createTree(DefEngTreeNode parent, uint8_t depth, DefSpace initial
     }
 }
 
+// Set *counted = 0, factor = 1 for calling from defeng.c
+void outputSizeTree(DefEngTreeNode node, size_t n_consonants, size_t n_vowels, size_t *counted, size_t factor)
+{
+    if (node->depth == 0)
+    {
+        *counted += factor * (node->space_type == CONSONANT ? n_consonants : n_vowels);
+    }
+    else
+    {
+        if (node->nChild == 1)
+        {
+            outputSizeTree(node->children[0], n_consonants, n_vowels, counted, factor * (node->space_type == CONSONANT ? n_consonants : n_vowels));
+        }
+        else if (node->nChild == 2)
+        {
+            outputSizeTree(node->children[0], n_consonants, n_vowels, counted, factor * (node->space_type == CONSONANT ? n_consonants : n_vowels));
+            outputSizeTree(node->children[1], n_consonants, n_vowels, counted, factor * (node->space_type == CONSONANT ? n_consonants : n_vowels));
+        }
+    }
+}
+
 void freeTree(DefEngTreeNode rootnode)
 {
     if (rootnode->depth == 0)

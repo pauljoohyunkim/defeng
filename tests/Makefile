@@ -7,5 +7,8 @@ treegen_test: treegen_test.c ../src/tree.c
 cluster_test: cluster_test.c ../src/cluster.c
 	$(CC) $(CFLAGS) $^ -o $@
 
+output_computation_test: output_computation_test.c ../src/tree.c
+	$(CC) $(CFLAGS) $^ -o $@
+
 clean:
 	$(RM) *_test

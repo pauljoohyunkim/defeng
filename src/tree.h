@@ -2,6 +2,7 @@
 #define __TREE_H__
 
 #include <stdint.h>
+#include <stddef.h>
 #include <stdbool.h>
 #include "common.h"
 
@@ -18,6 +19,7 @@ struct DefEngTreeNode_st
 };
 
 DefEngTreeNode createTree(DefEngTreeNode parent, uint8_t depth, DefSpace initial);
+void outputSizeTree(DefEngTreeNode node, size_t n_consonants, size_t n_vowels, size_t *counted, size_t factor);
 void freeTree(DefEngTreeNode rootnode);
 
 
