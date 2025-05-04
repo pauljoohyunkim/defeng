@@ -3,6 +3,8 @@
 
 #define MAX_CLUSTER_LENGTH 4
 
+#include <stddef.h>
+
 typedef struct { char arr [MAX_CLUSTER_LENGTH]; } Cluster;
 
 Cluster *createClusterList(char *str, size_t* pNItems);
