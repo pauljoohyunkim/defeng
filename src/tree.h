@@ -5,13 +5,19 @@
 #include <stdbool.h>
 #include "common.h"
 
-typedef struct 
+typedef struct DefEngTreeNode_st DefEngTreeNode_st;
+typedef DefEngTreeNode_st * DefEngTreeNode;
+
+struct DefEngTreeNode_st
 {
     DefSpace space_type;
     uint8_t depth;
     DefEngTreeNode parent;
-} DefEngTreeNode_st;
+    uint8_t nChild;
+    DefEngTreeNode children[2];
+};
 
-typedef DefEngTreeNode_st * DefEngTreeNode;
+DefEngTreeNode createTree(DefEngTreeNode parent, uint8_t depth, DefSpace initial);
+
 
 #endif

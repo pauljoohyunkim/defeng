@@ -7,32 +7,71 @@ DefEngTreeNode createTree(DefEngTreeNode parent, uint8_t depth, DefSpace initial
     // Else, create a child of the tree.
     if (parent == NULL)
     {
-
-    }
-    else
-    {
-        DefEngTreeNode child = NULL;
-
-        // If depth is zero, stop.
-        if (depth == 0)
+        DefEngTreeNode rootnode = calloc(1, sizeof(DefEngTreeNode_st));
+        if (rootnode == NULL)
         {
             return NULL;
         }
-
-        child = calloc(1, sizeof(DefEngTreeNode_st));
-
-        child->parent = parent;
-        child->depth = depth - 1;
         
-        // If space type is vowel, the child has space type consonant.
-        // Otherwise, split
-        if (parent->space_type == VOWEL)
+        rootnode->space_type = initial;
+        rootnode->depth = depth;
+        if (depth == 0)
         {
-            child->space_type = CONSONANT;
+            rootnode->nChild = 0;
+            return rootnode;
+        }
+
+        // Create children.
+        // If rootnode is VOWEL, then one child with CONSONANT.
+        // If rootnode is CONSONANT, then two children. One CONSONANT and one vowel.
+        if (initial == VOWEL)
+        {
+            rootnode->nChild = 1;
+            rootnode->children[0] = createTree(rootnode, depth-1, CONSONANT);
         }
         else
         {
-            
+            rootnode->nChild = 2;
+            rootnode->children[0] = createTree(rootnode, depth-1, CONSONANT);
+            rootnode->children[1] = createTree(rootnode, depth-1, VOWEL);
         }
+
+        return rootnode;
+    }
+    else
+    {
+        DefEngTreeNode node = NULL;
+
+        node = calloc(1, sizeof(DefEngTreeNode_st));
+
+        node->parent = parent;
+        node->depth = depth;
+        node->space_type = initial;
+
+        if (node->depth == 0)
+        {
+            node->nChild = 0;
+            return node;
+        }
+        
+        // Create children.
+        // If rootnode is VOWEL, then one child with CONSONANT.
+        // If rootnode is CONSONANT, then two children. One CONSONANT and one vowel.
+        if (initial == VOWEL)
+        {
+            node->nChild = 1;
+            node->children[0] = createTree(node, depth-1, CONSONANT);
+        }
+        else
+        {
+            node->nChild = 2;
+            node->children[0] = createTree(node, depth-1, CONSONANT);
+            node->children[1] = createTree(node, depth-1, VOWEL);
+        }
+
+
+
+        return node;
+        
     }
 }
