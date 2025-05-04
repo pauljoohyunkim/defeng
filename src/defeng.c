@@ -45,12 +45,17 @@ int main(int argc, char** argv)
                 output_filename = optarg;
                 break;
             case ':':
-                printf("Argument needed for %c\n", optopt);
+                printf("Argument needed for -%c\n", optopt);
                 break;
             case '?':
                 printf("Unknown option: %c\n", optopt);
                 break;
         }
+    }
+    if (consonant_filename == NULL || vowel_filename == NULL)
+    {
+        fprintf(stderr, "One or both of consonant cluster file or vowel cluster file is not set!\n");
+        return EXIT_FAILURE;
     }
 
     // Create a list of clusters
