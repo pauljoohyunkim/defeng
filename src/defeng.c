@@ -19,6 +19,7 @@ int main(int argc, char** argv)
     size_t tree_index = 0;
     size_t min = 2;
     size_t max = 4;
+    size_t nWords = 0;
 
     // Parsing arguments
     // c: consonant filename
@@ -60,6 +61,10 @@ int main(int argc, char** argv)
     {
         template_trees[tree_index++] = createTree(NULL, depth, CONSONANT);
         template_trees[tree_index++] = createTree(NULL, depth, VOWEL);
+    }
+    for (size_t i = 0; i < n_template_trees; i++)
+    {
+       outputSizeTree(template_trees[i], n_consonant_clusters, n_vowel_clusters, &nWords, 1);
     }
     
     freeClusters(consonant_clusters);
