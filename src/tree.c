@@ -70,6 +70,5 @@ DefEngTreeNode createTree(DefEngTreeNode parent, uint8_t depth, DefSpace initial
         }
 
         return node;
-        
     }
 }
