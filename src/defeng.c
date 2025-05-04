@@ -4,6 +4,8 @@
 #include "cluster.h"
 #include "tree.h"
 
+static void showHelp();
+
 int main(int argc, char** argv)
 {
     int opt;
@@ -31,6 +33,8 @@ int main(int argc, char** argv)
         switch (opt)
         {
             case 'h':
+                showHelp();
+                return EXIT_FAILURE;
             case 'c':
                 consonant_filename = optarg;
                 break;
@@ -74,4 +78,12 @@ int main(int argc, char** argv)
         freeTree(template_trees[i]);
     }
     free(template_trees);
+}
+
+static void showHelp()
+{
+    printf("Usage: defeng -c [consonant_cluster file] -v [vowel_cluster file] [other options]\n"
+           "Other options:\n"
+           "\t-o file\tOutput to file\n"
+            );
 }
