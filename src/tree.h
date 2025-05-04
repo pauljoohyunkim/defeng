@@ -18,6 +18,7 @@ struct DefEngTreeNode_st
 };
 
 DefEngTreeNode createTree(DefEngTreeNode parent, uint8_t depth, DefSpace initial);
+void freeTree(DefEngTreeNode rootnode);
 
 
 #endif

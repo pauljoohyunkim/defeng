@@ -9,5 +9,9 @@ int main()
     nodes[1] = createTree(NULL, 1, CONSONANT);
     nodes[2] = createTree(NULL, 2, CONSONANT);
 
+    freeTree(nodes[0]);
+    freeTree(nodes[1]);
+    freeTree(nodes[2]);
+
     return 0;
 }

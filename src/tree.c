@@ -72,3 +72,24 @@ DefEngTreeNode createTree(DefEngTreeNode parent, uint8_t depth, DefSpace initial
         return node;
     }
 }
+
+void freeTree(DefEngTreeNode rootnode)
+{
+    if (rootnode->depth == 0)
+    {
+        free(rootnode);
+    }
+    else
+    {
+        if (rootnode->nChild == 1)
+        {
+            freeTree(rootnode->children[0]);
+        }
+        else if (rootnode->nChild == 2)
+        {
+            freeTree(rootnode->children[0]);
+            freeTree(rootnode->children[1]);
+        }
+        free(rootnode);
+    }
+}
