@@ -1,6 +1,7 @@
 #include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "cluster.h"
 #include "generator.h"
 #include "tree.h"
@@ -23,6 +24,7 @@ int main(int argc, char** argv)
     size_t min = 2;
     size_t max = 3;
     size_t nWords = 0;
+    FILE *fp = stdout;
 
     // Parsing arguments
     // c: consonant filename
@@ -44,18 +46,24 @@ int main(int argc, char** argv)
                 break;
             case 'o':
                 output_filename = optarg;
+                fp = fopen(output_filename, "w");
+                if (fp == NULL)
+                {
+                    fprintf(stderr, "[-] Could not open output file for writing.\n");
+                    return EXIT_FAILURE;
+                }
                 break;
             case ':':
-                printf("Argument needed for -%c\n", optopt);
+                printf("[-] Argument needed for -%c\n", optopt);
                 break;
             case '?':
-                printf("Unknown option: %c\n", optopt);
+                printf("[-] Unknown option: %c\n", optopt);
                 break;
         }
     }
     if (consonant_filename == NULL || vowel_filename == NULL)
     {
-        fprintf(stderr, "One or both of consonant cluster file or vowel cluster file is not set!\n");
+        fprintf(stderr, "[-] One or both of consonant cluster file or vowel cluster file is not set!\n");
         return EXIT_FAILURE;
     }
 
@@ -76,11 +84,19 @@ int main(int argc, char** argv)
     {
        outputSizeTree(template_trees[i], n_consonant_clusters, n_vowel_clusters, &nWords, 1);
     }
+    printf("[*] About to generate %ld words ", nWords);
+    printf("and writing to %s\n", fp == stdout ? "stdout" : output_filename);
+    sleep(2);
     for (size_t i = 0; i < n_template_trees; i++)
     {
-        generate(template_trees[i], consonant_clusters, n_consonant_clusters, vowel_clusters, n_vowel_clusters, stdout, NULL);
+        generate(template_trees[i], consonant_clusters, n_consonant_clusters, vowel_clusters, n_vowel_clusters, fp, NULL);
     }
     
+    // Cleanup
+    if (fp != stdout)
+    {
+        fclose(fp);
+    }
     freeClusters(consonant_clusters);
     freeClusters(vowel_clusters);
     for (size_t i = 0; i < n_template_trees; i++)
