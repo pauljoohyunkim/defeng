@@ -23,18 +23,24 @@ DefEngTreeNode createTree(DefEngTreeNode parent, uint8_t depth, DefSpace initial
         }
 
         // Create children.
-        // If rootnode is VOWEL, then one child with CONSONANT.
-        // If rootnode is CONSONANT, then two children. One CONSONANT and one vowel.
+        // If rootnode is VOWEL, create two children, One CONSONANT_FORMER, one CONSONANT_LATTER
+        // If rootnode is CONSONANT_FORMER, then one child. One VOWEL
+        // If rootnode is CONSONANT_LATTER, then one child. One CONSONANT_FORMER
         if (initial == VOWEL)
         {
-            rootnode->nChild = 1;
-            rootnode->children[0] = createTree(rootnode, depth-1, CONSONANT);
-        }
-        else
-        {
             rootnode->nChild = 2;
-            rootnode->children[0] = createTree(rootnode, depth-1, CONSONANT);
-            rootnode->children[1] = createTree(rootnode, depth-1, VOWEL);
+            rootnode->children[0] = createTree(rootnode, depth-1, CONSONANT_FORMER);
+            rootnode->children[1] = createTree(rootnode, depth-1, CONSONANT_LATTER);
+        }
+        else if (initial == CONSONANT_FORMER)
+        {
+            rootnode->nChild = 1;
+            rootnode->children[0] = createTree(rootnode, depth-1, VOWEL);
+        }
+        else if (initial == CONSONANT_LATTER)
+        {
+            rootnode->nChild = 1;
+            rootnode->children[0] = createTree(rootnode, depth-1, CONSONANT_FORMER);
         }
 
         return rootnode;
@@ -57,18 +63,24 @@ DefEngTreeNode createTree(DefEngTreeNode parent, uint8_t depth, DefSpace initial
         }
         
         // Create children.
-        // If rootnode is VOWEL, then one child with CONSONANT.
-        // If rootnode is CONSONANT, then two children. One CONSONANT and one vowel.
+        // If rootnode is VOWEL, create two children, One CONSONANT_FORMER, one CONSONANT_LATTER
+        // If rootnode is CONSONANT_FORMER, then one child. One VOWEL
+        // If rootnode is CONSONANT_LATTER, then one child. One CONSONANT_FORMER
         if (initial == VOWEL)
         {
-            node->nChild = 1;
-            node->children[0] = createTree(node, depth-1, CONSONANT);
-        }
-        else
-        {
             node->nChild = 2;
-            node->children[0] = createTree(node, depth-1, CONSONANT);
-            node->children[1] = createTree(node, depth-1, VOWEL);
+            node->children[0] = createTree(node, depth-1, CONSONANT_FORMER);
+            node->children[1] = createTree(node, depth-1, CONSONANT_LATTER);
+        }
+        else if (initial == CONSONANT_FORMER)
+        {
+            node->nChild = 1;
+            node->children[0] = createTree(node, depth-1, VOWEL);
+        }
+        else if (initial == CONSONANT_LATTER)
+        {
+            node->nChild = 1;
+            node->children[0] = createTree(node, depth-1, CONSONANT_FORMER);
         }
 
         return node;
