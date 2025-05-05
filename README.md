@@ -26,7 +26,8 @@ Here is an example you could try (Note that c.txt and v.txt are provided in the 
 ## How it works
 defeng works by generating words of the following syntax
 ```
-(v)cv(C)cv(C)...
+* cv(C)cv(C)...
+* v(C)cv(C)cv(C)...
 ```
 where `c` refers to a "former consonant cluster", `v` refers to a vowel or a diphthong, and `(C)` refers to optional "latter consonalt cluster".
 
