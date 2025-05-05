@@ -135,7 +135,7 @@ static void showHelp()
 {
     printf("Usage: defeng -c [consonant_cluster file] -v [vowel_cluster file] [other options]\n"
            "Other options:\n"
-           "\t-o file\tOutput to file\n"
+           "\t-o file\t\tOutput to file\n"
            "\t-m length\tSet minimum number of spaces.\n"
            "\t-M length\tSet minimum number of spaces.\n"
             );
