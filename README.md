@@ -19,7 +19,7 @@ Other options:
 ```
 Here is an example you could try (Note that c.txt and v.txt are provided in the `data` directory):
 ```
-defenc -c data/c.txt -v data/v.txt -m 3 -M 4 -o wordlist.txt
+./bin/defenc -c data/c.txt -v data/v.txt -m 3 -M 4 -o wordlist.txt
 ```
 (You can find `austria` in this wordlist.txt.)
 
