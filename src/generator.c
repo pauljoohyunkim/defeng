@@ -61,6 +61,10 @@ void generate(DefEngTreeNode node, Cluster *consonant_clusters, size_t nConsonan
                 generate(node->children[0], consonant_clusters, nConsonants, vowel_clusters, nVowels, fp, prefix);
             }
         }
+    }
 
+    if (node->root == node)
+    {
+        free(prefix);
     }
 }
