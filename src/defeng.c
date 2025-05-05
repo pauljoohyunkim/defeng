@@ -11,14 +11,14 @@ static void showHelp();
 int main(int argc, char** argv)
 {
     int opt;
-    char *consonant_filename = NULL;
+    char *consonant_former_filename = NULL;
+    char *consonant_latter_filename = NULL;
     char *vowel_filename = NULL;
     char *output_filename = NULL;
     char *pEnd = NULL;      // For strtol
-    Cluster *consonant_clusters = NULL;
-    Cluster *vowel_clusters = NULL;
-    size_t n_consonant_clusters = 0;
-    size_t n_vowel_clusters = 0;
+    ClusterList *consonant_former_clusterlist = NULL;
+    ClusterList *consonant_latter_clusterlist = NULL;
+    ClusterList *vowel_clusterlist = NULL;
     DefEngTreeNode *template_trees = NULL;
     size_t n_template_trees = 0;
     size_t tree_index = 0;
@@ -32,7 +32,7 @@ int main(int argc, char** argv)
     // v: vowel filename
     // m: minimum length
     // M: maximum length
-    while((opt = getopt(argc, argv, ":hc:v:m:M:o:")) != -1)
+    while((opt = getopt(argc, argv, ":hc:C:v:m:M:o:")) != -1)
     {
         switch (opt)
         {
@@ -40,7 +40,10 @@ int main(int argc, char** argv)
                 showHelp();
                 return EXIT_FAILURE;
             case 'c':
-                consonant_filename = optarg;
+                consonant_former_filename = optarg;
+                break;
+            case 'C':
+                consonant_latter_filename = optarg;
                 break;
             case 'v':
                 vowel_filename = optarg;
@@ -78,7 +81,7 @@ int main(int argc, char** argv)
                 break;
         }
     }
-    if (consonant_filename == NULL || vowel_filename == NULL)
+    if (consonant_former_filename == NULL || consonant_latter_filename == NULL || vowel_filename == NULL)
     {
         fprintf(stderr, "[-] One or both of consonant cluster file or vowel cluster file is not set!\n");
         return EXIT_FAILURE;
@@ -94,8 +97,9 @@ int main(int argc, char** argv)
     max -= 1;
 
     // Create a list of clusters
-    consonant_clusters = createClusterList(consonant_filename, &n_consonant_clusters);
-    vowel_clusters = createClusterList(vowel_filename, &n_vowel_clusters);
+    consonant_former_clusterlist = createClusterList(consonant_former_filename);
+    consonant_latter_clusterlist = createClusterList(consonant_latter_filename);
+    vowel_clusterlist = createClusterList(vowel_filename);
 
     // Create the template tree and analyze them.
     // There will be (max - min + 1) * 2 trees. (Multiplication by 2 for consonant-start and vowel-start)
@@ -103,19 +107,19 @@ int main(int argc, char** argv)
     template_trees = calloc(n_template_trees, sizeof(DefEngTreeNode));
     for (size_t depth = min; depth < max + 1; depth++)
     {
-        template_trees[tree_index++] = createTree(NULL, depth, CONSONANT);
+        template_trees[tree_index++] = createTree(NULL, depth, CONSONANT_FORMER);
         template_trees[tree_index++] = createTree(NULL, depth, VOWEL);
     }
     for (size_t i = 0; i < n_template_trees; i++)
     {
-       outputSizeTree(template_trees[i], n_consonant_clusters, n_vowel_clusters, &nWords, 1);
+        outputSizeTree(template_trees[i], consonant_former_clusterlist->n, consonant_latter_clusterlist->n, vowel_clusterlist->n, &nWords, 1);
     }
     printf("[*] About to generate %ld words ", nWords);
     printf("and writing to %s\n", fp == stdout ? "stdout" : output_filename);
     sleep(2);
     for (size_t i = 0; i < n_template_trees; i++)
     {
-        generate(template_trees[i], consonant_clusters, n_consonant_clusters, vowel_clusters, n_vowel_clusters, fp, NULL);
+        generate(template_trees[i], consonant_former_clusterlist, consonant_latter_clusterlist, vowel_clusterlist, fp, NULL);
     }
     
     // Cleanup
@@ -123,8 +127,9 @@ int main(int argc, char** argv)
     {
         fclose(fp);
     }
-    freeClusters(consonant_clusters);
-    freeClusters(vowel_clusters);
+    freeClusterList(consonant_former_clusterlist);
+    freeClusterList(consonant_latter_clusterlist);
+    freeClusterList(vowel_clusterlist);
     for (size_t i = 0; i < n_template_trees; i++)
     {
         freeTree(template_trees[i]);
