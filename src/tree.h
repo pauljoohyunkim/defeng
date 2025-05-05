@@ -20,7 +20,7 @@ struct DefEngTreeNode_st
 };
 
 DefEngTreeNode createTree(DefEngTreeNode parent, uint8_t depth, DefSpace initial);
-void outputSizeTree(DefEngTreeNode node, size_t n_consonants, size_t n_vowels, size_t *counted, size_t factor);
+void outputSizeTree(DefEngTreeNode node, size_t n_c, size_t n_C, size_t n_v, size_t *counted, size_t factor);
 void freeTree(DefEngTreeNode rootnode);
 
 
