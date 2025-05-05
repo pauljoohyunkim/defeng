@@ -46,7 +46,7 @@ as generating using 6 spaces would have taken about 3~5 hours.
 If I keep developing this, here are a few small things I aim to do in the upcoming future.
 * More realistic word generation
     * It turns out that words like astrsch (3-space word) is not likely a word that people would have invented.
-    * I can try to split up consonants and vowels into "frontal" and "latter".
+    * I can try to split up consonants and vowels into "former" and "latter".
 * Size of the file computation.
     * Not only the number of words, but also the overall size of the file generated.
 
