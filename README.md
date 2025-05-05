@@ -17,6 +17,11 @@ Other options:
         -m length       Set minimum number of spaces. (Default: 2)
         -M length       Set minimum number of spaces. (Default: 3)
 ```
+Here is an example you could try:
+```
+defenc -c data/c.txt -v data/v.txt -m 3 -M 4 -o wordlist.txt
+```
+(You can find `austria` in this wordlist.txt.)
 
 ## How it works
 defeng works by generating words of the following syntax
