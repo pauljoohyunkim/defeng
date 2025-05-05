@@ -6,6 +6,6 @@
 #include "cluster.h"
 #include "tree.h"
 
-void generate(DefEngTreeNode node, Cluster *consonant_clusters, size_t nConsonants, Cluster *vowel_clusters, size_t nVowels, FILE *fp, Cluster *prefix);
+void generate(DefEngTreeNode node, ClusterList *consonant_former_clusterlist, ClusterList* consonant_latter_clusterlist, ClusterList *vowel_clusterlist, FILE *fp, Cluster *prefix);
 
 #endif
