@@ -1,6 +1,8 @@
 CC=gcc
 CFLAGS=-g -Wall
 
+all: treegen_test cluster_test output_computation_test generator_test
+
 treegen_test: treegen_test.c ../src/tree.c
 	$(CC) $(CFLAGS) $^ -o $@
 

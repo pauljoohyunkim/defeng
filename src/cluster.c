@@ -26,9 +26,9 @@ static size_t countLines(FILE *fp)
     return n;
 }
 
-Cluster *createClusterList(char *str, size_t* pNItems)
+ClusterList *createClusterList(char *str)
 {
-    Cluster *clusters = NULL;
+    ClusterList *clusterlist = NULL;
     FILE * fp = NULL;
     size_t nLines = 0;
 
@@ -41,23 +41,23 @@ Cluster *createClusterList(char *str, size_t* pNItems)
     nLines = countLines(fp);
 
     // Create cluster list.
-    clusters = calloc(nLines, sizeof(Cluster)); 
+    clusterlist = calloc(1, sizeof(ClusterList));
+    clusterlist->clusters = calloc(nLines, sizeof(Cluster)); 
     for (size_t i = 0; i < nLines; i++)
     {
-        fgets(clusters[i].arr, MAX_CLUSTER_LENGTH, fp);
-        clusters[i].arr[strcspn(clusters[i].arr, "\r\n")] = 0;  // Get rid of trailing newline.
+        fgets(clusterlist->clusters[i].arr, MAX_CLUSTER_LENGTH, fp);
+        clusterlist->clusters[i].arr[strcspn(clusterlist->clusters[i].arr, "\r\n")] = 0;  // Get rid of trailing newline.
     }
 
     fclose(fp);
 
-    if (pNItems != NULL)
-    {
-        *pNItems = nLines;
-    }
-    return clusters;
+    clusterlist->n = nLines;
+
+    return clusterlist;
 }
 
-void freeClusters(Cluster * clusters)
+void freeClusterList(ClusterList * clusterlist)
 {
-    free(clusters);
+    free(clusterlist->clusters);
+    free(clusterlist);
 }

@@ -2,7 +2,8 @@
 #define __COMMON_H__
 
 typedef enum {
-    CONSONANT,
+    CONSONANT_FORMER,
+    CONSONANT_LATTER,
     VOWEL
 } DefSpace;
 

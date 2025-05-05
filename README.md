@@ -26,9 +26,10 @@ Here is an example you could try (Note that c.txt and v.txt are provided in the 
 ## How it works
 defeng works by generating words of the following syntax
 ```
-(v)cv(c)cv(c)...
+* cv(C)cv(C)...
+* v(C)cv(C)cv(C)...
 ```
-where `c` refers to a "consonant cluster", `v` refers to a vowel or a diphthong, and (?) refers to optional space.
+where `c` refers to a "former consonant cluster", `v` refers to a vowel or a diphthong, and `(C)` refers to optional "latter consonalt cluster".
 
 By default, consonant clusters include, but not limited to
 * b, c, ...
@@ -39,14 +40,11 @@ By default, consonant clusters include, but not limited to
 Note that you do not have to set the length to be more than 5 is most cases!
 For example, the word `strength` will require only four spaces with this generator. (str-e-ng-th)
 
-I would recommend capping the maximum at 5 spaces (which took me 5 minutes to generate),
-as generating using 6 spaces would have taken about 3~5 hours.
-
 ## Outlook
 If I keep developing this, here are a few small things I aim to do in the upcoming future.
 * More realistic word generation
     * It turns out that words like astrsch (3-space word) is not likely a word that people would have invented.
-    * I can try to split up consonants and vowels into "frontal" and "latter".
+    * I can try to split up consonants and vowels into "former" and "latter".
 * Size of the file computation.
     * Not only the number of words, but also the overall size of the file generated.
 
