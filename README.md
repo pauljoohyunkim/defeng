@@ -13,3 +13,9 @@ By default, consonant clusters include, but not limited to
 * a, b, c, ...
 * ch, sh, sch, ...
 * bl, sl, sk, ...
+
+## Note
+Note that you do not have to set the length to be more than 5 is most cases!
+For example, the word `strength` will require only four spaces with this generator. (str-e-ng-th)
+
+

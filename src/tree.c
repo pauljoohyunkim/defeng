@@ -15,6 +15,7 @@ DefEngTreeNode createTree(DefEngTreeNode parent, uint8_t depth, DefSpace initial
         
         rootnode->space_type = initial;
         rootnode->depth = depth;
+        rootnode->root = rootnode;
         if (depth == 0)
         {
             rootnode->nChild = 0;
@@ -45,6 +46,7 @@ DefEngTreeNode createTree(DefEngTreeNode parent, uint8_t depth, DefSpace initial
         node = calloc(1, sizeof(DefEngTreeNode_st));
 
         node->parent = parent;
+        node->root = parent->root;
         node->depth = depth;
         node->space_type = initial;
 

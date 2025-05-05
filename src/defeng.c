@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cluster.h"
+#include "generator.h"
 #include "tree.h"
 
 static void showHelp();
@@ -20,7 +21,7 @@ int main(int argc, char** argv)
     size_t n_template_trees = 0;
     size_t tree_index = 0;
     size_t min = 2;
-    size_t max = 4;
+    size_t max = 3;
     size_t nWords = 0;
 
     // Parsing arguments
@@ -74,6 +75,10 @@ int main(int argc, char** argv)
     for (size_t i = 0; i < n_template_trees; i++)
     {
        outputSizeTree(template_trees[i], n_consonant_clusters, n_vowel_clusters, &nWords, 1);
+    }
+    for (size_t i = 0; i < n_template_trees; i++)
+    {
+        generate(template_trees[i], consonant_clusters, n_consonant_clusters, vowel_clusters, n_vowel_clusters, stdout, NULL);
     }
     
     freeClusters(consonant_clusters);

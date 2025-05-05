@@ -13,6 +13,7 @@ struct DefEngTreeNode_st
 {
     DefSpace space_type;
     uint8_t depth;
+    DefEngTreeNode root;
     DefEngTreeNode parent;
     uint8_t nChild;
     DefEngTreeNode children[2];
