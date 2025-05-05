@@ -11,7 +11,7 @@ and add the generated `bin/defeng` to a directory included in the PATH variable.
 
 ## Usage
 ```
-Usage: defeng -c [consonant_cluster file] -v [vowel_cluster file] [other options]
+Usage: defeng -c [consonant_former_cluster file] -C [consonant_latter_cluster file] -v [vowel_cluster file] [other options]
 Other options:
         -o file         Output to file
         -m length       Set minimum number of spaces. (Default: 2)

@@ -139,7 +139,7 @@ int main(int argc, char** argv)
 
 static void showHelp()
 {
-    printf("Usage: defeng -c [consonant_cluster file] -v [vowel_cluster file] [other options]\n"
+    printf("Usage: defeng -c [consonant_former_cluster file] -C [consonant_latter_cluster file] -v [vowel_cluster file] [other options]\n"
            "Other options:\n"
            "\t-o file\t\tOutput to file\n"
            "\t-m length\tSet minimum number of spaces. (Default: 2)\n"
