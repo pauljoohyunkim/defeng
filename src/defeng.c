@@ -55,7 +55,7 @@ int main(int argc, char** argv)
                 }
             case 'm':
                 min = strtol(optarg, &pEnd, 10);
-                if (min == 0)
+                if (min <= 0)
                 {
                     fprintf(stderr, "[-] Minimum number of space could not be read.\n");
                     return EXIT_FAILURE;
@@ -63,7 +63,7 @@ int main(int argc, char** argv)
                 break;
             case 'M':
                 max = strtol(optarg, &pEnd, 10);
-                if (max == 0)
+                if (max <= 0)
                 {
                     fprintf(stderr, "[-] Maximum number of space could not be read.\n");
                     return EXIT_FAILURE;
