@@ -28,7 +28,7 @@ defeng works by generating words of the following syntax
 ```
 (v)cv(C)cv(C)...
 ```
-where `c` refers to a "former consonant cluster", `v` refers to a vowel or a diphthong, and (C) refers to optional "latter consonalt cluster".
+where `c` refers to a "former consonant cluster", `v` refers to a vowel or a diphthong, and `(C)` refers to optional "latter consonalt cluster".
 
 By default, consonant clusters include, but not limited to
 * a, b, c, ...
