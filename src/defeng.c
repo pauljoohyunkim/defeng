@@ -14,6 +14,7 @@ int main(int argc, char** argv)
     char *consonant_filename = NULL;
     char *vowel_filename = NULL;
     char *output_filename = NULL;
+    char *pEnd = NULL;      // For strtol
     Cluster *consonant_clusters = NULL;
     Cluster *vowel_clusters = NULL;
     size_t n_consonant_clusters = 0;
@@ -31,7 +32,7 @@ int main(int argc, char** argv)
     // v: vowel filename
     // m: minimum length
     // M: maximum length
-    while((opt = getopt(argc, argv, ":hc:v:o:")) != -1)
+    while((opt = getopt(argc, argv, ":hc:v:m:M:o:")) != -1)
     {
         switch (opt)
         {
@@ -52,12 +53,27 @@ int main(int argc, char** argv)
                     fprintf(stderr, "[-] Could not open output file for writing.\n");
                     return EXIT_FAILURE;
                 }
+            case 'm':
+                min = strtol(optarg, &pEnd, 10);
+                if (min == 0)
+                {
+                    fprintf(stderr, "[-] Minimum number of space could not be read.\n");
+                    return EXIT_FAILURE;
+                }
+                break;
+            case 'M':
+                max = strtol(optarg, &pEnd, 10);
+                if (max == 0)
+                {
+                    fprintf(stderr, "[-] Maximum number of space could not be read.\n");
+                    return EXIT_FAILURE;
+                }
                 break;
             case ':':
                 printf("[-] Argument needed for -%c\n", optopt);
-                break;
+                return EXIT_FAILURE;
             case '?':
-                printf("[-] Unknown option: %c\n", optopt);
+                printf("[-] Unknown option: -%c\n", optopt);
                 break;
         }
     }
@@ -66,6 +82,15 @@ int main(int argc, char** argv)
         fprintf(stderr, "[-] One or both of consonant cluster file or vowel cluster file is not set!\n");
         return EXIT_FAILURE;
     }
+    if (min > max)
+    {
+        fprintf(stderr, "[-] The minimum number of spaces exceeds the maximum number of spaces!\n");
+        return EXIT_FAILURE;
+    }
+
+    // Length is one more than depth, and rest of the code uses "depth".
+    min -= 1;
+    max -= 1;
 
     // Create a list of clusters
     consonant_clusters = createClusterList(consonant_filename, &n_consonant_clusters);
@@ -111,5 +136,7 @@ static void showHelp()
     printf("Usage: defeng -c [consonant_cluster file] -v [vowel_cluster file] [other options]\n"
            "Other options:\n"
            "\t-o file\tOutput to file\n"
+           "\t-m length\tSet minimum number of spaces.\n"
+           "\t-M length\tSet minimum number of spaces.\n"
             );
 }

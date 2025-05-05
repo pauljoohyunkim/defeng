@@ -5,9 +5,12 @@ SRCDIR=src
 BINDIR=bin
 OBJDIR=obj
 
-$(BINDIR)/$(BIN): $(SRCDIR)/*
+$(BINDIR)/$(BIN): $(OBJDIR)/cluster.o $(OBJDIR)/defeng.o $(OBJDIR)/generator.o $(OBJDIR)/tree.o
 	$(CC) $(CFLAGS) $^ -o $@
 
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	rm $(BINDIR)/*
-	rm $(OBJDIR)/*
+	$(RM) -rf $(BINDIR)/*
+	$(RM) -rf $(OBJDIR)/*
