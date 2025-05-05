@@ -53,6 +53,7 @@ int main(int argc, char** argv)
                     fprintf(stderr, "[-] Could not open output file for writing.\n");
                     return EXIT_FAILURE;
                 }
+                break;
             case 'm':
                 min = strtol(optarg, &pEnd, 10);
                 if (min <= 0)
