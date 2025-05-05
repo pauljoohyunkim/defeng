@@ -5,16 +5,14 @@
 
 int main()
 {
-    size_t nc = 0;
-    Cluster *cs = createClusterList("../data/c.txt", &nc);
-    size_t nv = 0;
-    Cluster *vs = createClusterList("../data/v.txt", &nv);
+    ClusterList *cs = createClusterList("../data/c.txt");
+    ClusterList *vs = createClusterList("../data/v.txt");
 
     // Tree Generation
-    DefEngTreeNode node = createTree(NULL, 2, CONSONANT);
-    generate(node, cs, nc, vs, nv, stdout, NULL);
+    DefEngTreeNode node = createTree(NULL, 2, CONSONANT_FORMER);
+    generate(node, cs, cs, vs, stdout, NULL);
 
     freeTree(node);
-    freeClusters(cs);
-    freeClusters(vs);
+    freeClusterList(cs);
+    freeClusterList(vs);
 }
