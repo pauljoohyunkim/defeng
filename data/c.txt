@@ -50,6 +50,7 @@ sh
 th
 ph
 wh
+ng
 sch
 scr
 shr

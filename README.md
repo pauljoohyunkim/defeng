@@ -2,6 +2,14 @@
 
 defeng is a wordlist generator that generates words that "looks like English words".
 
+## Installation
+As of right now, there is no installer, so you can simply compile it:
+```
+make
+```
+and add the generated `bin/defeng` to a directory included in the PATH variable.
+
+## Usage
 ```
 Usage: defeng -c [consonant_cluster file] -v [vowel_cluster file] [other options]
 Other options:
