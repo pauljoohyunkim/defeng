@@ -40,9 +40,6 @@ By default, consonant clusters include, but not limited to
 Note that you do not have to set the length to be more than 5 is most cases!
 For example, the word `strength` will require only four spaces with this generator. (str-e-ng-th)
 
-I would recommend capping the maximum at 5 spaces (which took me 5 minutes to generate),
-as generating using 6 spaces would have taken about 3~5 hours.
-
 ## Outlook
 If I keep developing this, here are a few small things I aim to do in the upcoming future.
 * More realistic word generation
