@@ -5,9 +5,16 @@
 
 #include <stddef.h>
 
-typedef struct { char arr [MAX_CLUSTER_LENGTH]; } Cluster;
+typedef struct { 
+    char arr [MAX_CLUSTER_LENGTH];
+} Cluster;
 
-Cluster *createClusterList(char *str, size_t* pNItems);
-void freeClusters(Cluster * clusters);
+typedef struct {
+    Cluster *clusters;
+    size_t n;
+} ClusterList;
+
+ClusterList *createClusterList(char *str);
+void freeClusterList(ClusterList * clusterlist);
 
 #endif
