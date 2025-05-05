@@ -34,4 +34,11 @@ By default, consonant clusters include, but not limited to
 Note that you do not have to set the length to be more than 5 is most cases!
 For example, the word `strength` will require only four spaces with this generator. (str-e-ng-th)
 
+## Conception
+The idea behind this was that, many words have limited number of consonants or vowels in a row.
+This fact applies in some languages as well, such as French, Spanish, Korean, etc.
+
+By only outputting words that are more "word-like", one could greatly reduce the search space for penetration testing.
+
+For analysis of this conjecture, one may look more into asymptotic equipartition property (AEP), I guess?
 
