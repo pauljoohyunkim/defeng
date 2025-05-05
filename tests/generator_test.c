@@ -11,8 +11,8 @@ int main()
     Cluster *vs = createClusterList("../data/v.txt", &nv);
 
     // Tree Generation
-    DefEngTreeNode node = createTree(NULL, 0, CONSONANT);
-    generate(node, cs, nc, vs, nv, stdout, NULL, 0);
+    DefEngTreeNode node = createTree(NULL, 3, CONSONANT);
+    generate(node, cs, nc, vs, nv, stdout, NULL);
 
     freeClusters(cs);
     freeClusters(vs);
