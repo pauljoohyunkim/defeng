@@ -2,7 +2,15 @@
 
 defeng is a wordlist generator that generates words that "looks like English words".
 
-## Usage
+```
+Usage: defeng -c [consonant_cluster file] -v [vowel_cluster file] [other options]
+Other options:
+        -o file         Output to file
+        -m length       Set minimum number of spaces. (Default: 2)
+        -M length       Set minimum number of spaces. (Default: 3)
+```
+
+## How it works
 defeng works by generating words of the following syntax
 ```
 (v)cv(c)cv(c)...
