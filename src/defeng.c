@@ -83,7 +83,7 @@ int main(int argc, char** argv)
     }
     if (consonant_former_filename == NULL || consonant_latter_filename == NULL || vowel_filename == NULL)
     {
-        fprintf(stderr, "[-] One or both of consonant cluster file or vowel cluster file is not set!\n");
+        fprintf(stderr, "[-] One or more of cluster files are not set!\n");
         return EXIT_FAILURE;
     }
     if (min > max)
