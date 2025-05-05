@@ -17,7 +17,7 @@ Other options:
         -m length       Set minimum number of spaces. (Default: 2)
         -M length       Set minimum number of spaces. (Default: 3)
 ```
-Here is an example you could try:
+Here is an example you could try (Note that c.txt and v.txt are provided in the `data` directory):
 ```
 defenc -c data/c.txt -v data/v.txt -m 3 -M 4 -o wordlist.txt
 ```
@@ -38,6 +38,15 @@ By default, consonant clusters include, but not limited to
 ## Note
 Note that you do not have to set the length to be more than 5 is most cases!
 For example, the word `strength` will require only four spaces with this generator. (str-e-ng-th)
+
+## Outlook
+If I keep developing this, here are a few small things I aim to do in the upcoming future.
+* More realistic word generation
+    * It turns out that words like astrsch (3-space word) is not likely a word that people would have invented.
+    * I can try to split up consonants and vowels into "frontal" and "latter".
+* Size of the file computation.
+    * Not only the number of words, but also the overall size of the file generated.
+
 
 ## Conception
 The idea behind this was that, many words have limited number of consonants or vowels in a row.
