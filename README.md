@@ -19,7 +19,7 @@ Other options:
 ```
 Here is an example you could try (Note that c.txt and v.txt are provided in the `data` directory):
 ```
-./bin/defenc -c data/c.txt -v data/v.txt -m 3 -M 4 -o wordlist.txt
+./bin/defenc -c data/c.txt -C data/c.txt -v data/v.txt -m 3 -M 4 -o wordlist.txt
 ```
 (You can find `austria` in this wordlist.txt.)
 
@@ -42,7 +42,7 @@ For example, the word `strength` will require only four spaces with this generat
 
 ## Outlook
 If I keep developing this, here are a few small things I aim to do in the upcoming future.
-* More realistic word generation
+* More realistic word generation \[Done!\]
     * It turns out that words like astrsch (3-space word) is not likely a word that people would have invented.
     * I can try to split up consonants and vowels into "former" and "latter".
 * Size of the file computation.
