@@ -9,7 +9,9 @@ int main()
     size_t outputSize = 0;
 
     node = createTree(NULL, 2, VOWEL);
-    outputSizeTree(node, n_consonants, n_vowels, &outputSize, 1);
+    outputSizeTree(node, n_consonants, n_vowels, n_consonants, &outputSize, 1);
+
+    freeTree(node);
 
     return 0;
 }
