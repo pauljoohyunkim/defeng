@@ -5,9 +5,9 @@ int main()
 {
     size_t n = 0;
 
-    Cluster* clusters = createClusterList("../data/c.txt", &n);
+    ClusterList* clusterlist = createClusterList("../data/c.txt");
 
-    freeClusters(clusters);
+    freeClusterList(clusterlist);
 
     return 0;
 }
