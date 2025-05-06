@@ -17,7 +17,7 @@ Other options:
         -m length       Set minimum number of spaces. (Default: 2)
         -M length       Set minimum number of spaces. (Default: 3)
 ```
-Here is an example you could try (Note that c.txt and v.txt are provided in the `data` directory):
+Here is an example you could try (Note that c_{former,latter}.txt and v.txt are provided in the `data` directory):
 ```
 ./bin/defenc -c data/c_former.txt -C data/c_latter.txt -v data/v.txt -m 3 -M 4 -o wordlist.txt
 ```
